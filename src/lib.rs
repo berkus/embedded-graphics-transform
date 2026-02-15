@@ -46,9 +46,9 @@ macro_rules! xform_new {
 }
 
 macro_rules! impl_as_ref {
-    ($_asref:ident, $expr:expr, ) => { $expr };
+    ($_asref:ident, $expr:expr_2021, ) => { $expr };
 
-    ($asref:ident, $expr:expr, $xform:ident $($rest:ident)*) => {
+    ($asref:ident, $expr:expr_2021, $xform:ident $($rest:ident)*) => {
         impl_as_ref!($asref, r#impl::$xform::$asref($expr), $($rest)*)
     };
 }
@@ -197,7 +197,7 @@ pub struct Rotate<D> {
 }
 
 macro_rules! rotate_impl {
-    (& $rot:expr, $func:ident ( $($args:expr),* $(,)?)) => {
+    (& $rot:expr_2021, $func:ident ( $($args:expr_2021),* $(,)?)) => {
         match &$rot.target {
             RotateInner::Rotate0(inner) => inner.$func($($args),*),
             RotateInner::Rotate90(inner) => inner.$func($($args),*),
@@ -205,7 +205,7 @@ macro_rules! rotate_impl {
             RotateInner::Rotate270(inner) => inner.$func($($args),*),
         }
     };
-    (&mut $rot:expr, $func:ident ( $($args:expr),* $(,)?)) => {
+    (&mut $rot:expr_2021, $func:ident ( $($args:expr_2021),* $(,)?)) => {
         match &mut $rot.target {
             RotateInner::Rotate0(inner) => inner.$func($($args),*),
             RotateInner::Rotate90(inner) => inner.$func($($args),*),
@@ -213,7 +213,7 @@ macro_rules! rotate_impl {
             RotateInner::Rotate270(inner) => inner.$func($($args),*),
         }
     };
-    ($rot:expr, $func:ident ( $($args:expr),* $(,)?)) => {
+    ($rot:expr_2021, $func:ident ( $($args:expr_2021),* $(,)?)) => {
         match $rot.target {
             RotateInner::Rotate0(inner) => inner.$func($($args),*),
             RotateInner::Rotate90(inner) => inner.$func($($args),*),
